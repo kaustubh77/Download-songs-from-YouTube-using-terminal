@@ -13,7 +13,7 @@ Steps to use the above program-
 3. This is an optional step. If you want to be able to download songs from any of your working directories then do the following changes in .bash_profile<br/>
   3 . 1. Type ```vi ~/.bash_profile``` on your terminal.<br/>
   3 . 2. In the vi editor append the following line to the file. Save and close the file later.<br/>
-    ```alias dy="python3 ~/path_where_you_have_stored_the_downloaded_python_script.py"```
+    ```alias dy="python3 ~/path_where_you_have_stored_the_downloaded_python_script/youtubeLink.py"```
 
 4. Now you can type ```dy``` in any directory on the terminal. Now just enter the name of the song you want to Download. This will download the song in the current working directory.NOTE: The program might show an error after downloading, just ignore that message, your song would have been downloaded.
 
