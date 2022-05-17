@@ -9,7 +9,7 @@ import requests
 import json
 from pyfiglet import Figlet
 f = Figlet(font='slant')
-print(f.renderText('Kaustubh\'sDownloader'))
+print(f.renderText('Kaustubh\'s Downloader'))
 
 API_KEY = "b5873c5ba6a1887af8f7314a78801b1"
 
@@ -22,27 +22,25 @@ def get_youtube_id(url1):
     answer = candidate
   return answer
 
-def get_lyrics(query_string):
-	target_url = 'https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback&q_track=' + query_string + '&apikey=cb5873c5ba6a1887af8f7314a78801b1'
-	request = requests.get(target_url)
-	print(request.text)
+import urllib.request
+import re
 
-search_query_input = input("Search the song you want to download: ")
-query_string = urllib.parse.urlencode({"search_query" : search_query_input})
-html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
-targetlink = "http://www.youtube.com/watch?v=" + search_results[0]
+search_keyword=input("Type the name of the song: ")
+search_keyword = search_keyword.split()
+search_keyword = "+".join(search_keyword)
+html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + search_keyword)
+video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+print("https://www.youtube.com/watch?v=" + video_ids[0])
+targetlink = "http://www.youtube.com/watch?v=" + video_ids[0]
 
 cmd="youtube-dl -x --audio-format mp3 "+targetlink
 os.system(cmd)
 print("\n")
 
-if sys.argv[-1] == 'lyrics':
-	get_lyrics(search_query_input)
+print(f.renderText('Download Complete'))
 
-
-print("*------------------------*")
-print("|   DOWNLOAD COMPLETE    |")
-print("*------------------------*")
+# print("*------------------------*")
+# print("|   DOWNLOAD COMPLETE    |")
+# print("*------------------------*")
 
 print("\n")
